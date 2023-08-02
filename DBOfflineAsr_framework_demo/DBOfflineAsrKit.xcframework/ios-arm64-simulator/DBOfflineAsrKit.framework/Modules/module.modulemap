@@ -1,0 +1,6 @@
+framework module DBOfflineAsrKit {
+  umbrella header "DBOfflineAsrKit.h"
+
+  export *
+  module * { export * }
+}
