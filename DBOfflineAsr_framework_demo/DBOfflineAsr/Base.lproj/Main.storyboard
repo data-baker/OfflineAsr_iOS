@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Rf3-2E-b6g">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Aww-JX-kdF">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -25,7 +25,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7q8-Y3-WbJ">
                                         <rect key="frame" x="0.0" y="0.0" width="125.66666666666667" height="34.333333333333336"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="Start"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="录音识别"/>
                                         <connections>
                                             <action selector="onRecordBtnClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rS6-DT-XWm"/>
                                         </connections>
@@ -61,27 +61,6 @@
                                     <constraint firstAttribute="width" constant="80" id="Swq-QM-epK"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="rAt-4c-fGt">
-                                <rect key="frame" x="97.333333333333329" y="690.33333333333337" width="198.66666666666669" height="34.333333333333371"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YOa-40-LP4">
-                                        <rect key="frame" x="0.0" y="0.0" width="93.333333333333329" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="获取授权"/>
-                                        <connections>
-                                            <action selector="auth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YSJ-SF-D8L"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dQe-36-SdA">
-                                        <rect key="frame" x="105.33333333333334" y="0.0" width="93.333333333333343" height="34.333333333333336"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="清除授权"/>
-                                        <connections>
-                                            <action selector="clearAuth:" destination="BYZ-38-t0r" eventType="touchUpInside" id="PqJ-0U-bma"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -90,15 +69,14 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="oae-Qe-GlJ" secondAttribute="bottom" constant="10.67" id="C8v-L0-OJD"/>
                             <constraint firstItem="jfS-7J-m9C" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="8" id="HX3-rI-U9E"/>
                             <constraint firstItem="oae-Qe-GlJ" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="IPY-1O-Nrv"/>
-                            <constraint firstItem="oae-Qe-GlJ" firstAttribute="top" secondItem="rAt-4c-fGt" secondAttribute="bottom" constant="6" id="K02-qB-31A"/>
                             <constraint firstItem="jfS-7J-m9C" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="8" id="NEv-PD-DHj"/>
+                            <constraint firstItem="oae-Qe-GlJ" firstAttribute="top" secondItem="Qh1-UC-Rch" secondAttribute="bottom" constant="60.329999999999998" id="OMX-k0-NGk"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jfS-7J-m9C" secondAttribute="trailing" constant="8" id="P2f-hG-O2e"/>
-                            <constraint firstItem="rAt-4c-fGt" firstAttribute="top" secondItem="Qh1-UC-Rch" secondAttribute="bottom" constant="20" id="UAp-KK-qAD"/>
-                            <constraint firstItem="rAt-4c-fGt" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="in5-OW-Npa"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dHy-39-EMM"/>
                     <connections>
+                        <outlet property="fileRecognizeButton" destination="ih2-Ft-Rw8" id="6Cv-Ez-VvU"/>
                         <outlet property="recordBtn" destination="7q8-Y3-WbJ" id="mFd-cu-zjn"/>
                         <outlet property="resultLabel" destination="jfS-7J-m9C" id="xQU-ID-m5Q"/>
                         <outlet property="voiceImageView" destination="Qh1-UC-Rch" id="mCD-Ny-N47"/>
@@ -106,7 +84,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="959.5419847328244" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="1027" y="-252"/>
         </scene>
         <!--LoginVC-->
         <scene sceneID="k7d-PW-AaU">
@@ -191,12 +169,27 @@
                                     <action selector="comeBack:" destination="0or-3q-FPV" eventType="touchUpInside" id="Dg0-Cu-Fmu"/>
                                 </connections>
                             </button>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cRy-gk-xtJ">
+                                <rect key="frame" x="147.66666666666666" y="630" width="98" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="AJg-zY-RlD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <state key="normal" title="清除授权">
+                                    <color key="titleColor" systemColor="linkColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearAuth:" destination="0or-3q-FPV" eventType="touchUpInside" id="ldR-kn-5Bm"/>
+                                    <action selector="loginAction:" destination="0or-3q-FPV" eventType="touchUpInside" id="1aX-Os-Kfi"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fdf-54-Bda"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="sD5-pb-1wk" firstAttribute="top" secondItem="Wuo-o1-5bm" secondAttribute="bottom" constant="20" id="BLP-gF-LQ0"/>
                             <constraint firstItem="fdf-54-Bda" firstAttribute="trailing" secondItem="3fa-CJ-A75" secondAttribute="trailing" constant="20" id="CYy-2O-W19"/>
+                            <constraint firstItem="cRy-gk-xtJ" firstAttribute="centerX" secondItem="lqf-rU-kr4" secondAttribute="centerX" id="Cwf-I7-grx"/>
                             <constraint firstItem="AtF-Vq-Cdu" firstAttribute="centerX" secondItem="lqf-rU-kr4" secondAttribute="centerX" id="FNs-jA-rPc"/>
                             <constraint firstItem="JF4-g5-ePt" firstAttribute="leading" secondItem="fdf-54-Bda" secondAttribute="leading" constant="20" id="Iaf-1s-RxQ"/>
                             <constraint firstItem="oZx-jK-n62" firstAttribute="leading" secondItem="fdf-54-Bda" secondAttribute="leading" constant="22" id="KYR-c5-3si"/>
@@ -207,6 +200,7 @@
                             <constraint firstItem="3fa-CJ-A75" firstAttribute="leading" secondItem="fdf-54-Bda" secondAttribute="leading" constant="20" id="bdJ-jy-iYh"/>
                             <constraint firstItem="3fa-CJ-A75" firstAttribute="top" secondItem="qHF-Nj-CoU" secondAttribute="bottom" constant="30" id="ebJ-WQ-gui"/>
                             <constraint firstItem="RAE-QI-KfG" firstAttribute="top" secondItem="fdf-54-Bda" secondAttribute="top" constant="10" id="gqi-7l-Qjd"/>
+                            <constraint firstItem="cRy-gk-xtJ" firstAttribute="top" secondItem="AtF-Vq-Cdu" secondAttribute="bottom" constant="20" id="ii7-w8-iU9"/>
                             <constraint firstItem="sD5-pb-1wk" firstAttribute="leading" secondItem="fdf-54-Bda" secondAttribute="leading" constant="20" id="phZ-jH-gIs"/>
                             <constraint firstItem="AtF-Vq-Cdu" firstAttribute="top" secondItem="sD5-pb-1wk" secondAttribute="bottom" constant="100" id="qAj-HW-NSj"/>
                             <constraint firstItem="fdf-54-Bda" firstAttribute="trailing" secondItem="qHF-Nj-CoU" secondAttribute="trailing" constant="20" id="qld-Xi-Wlo"/>
@@ -218,6 +212,7 @@
                             <constraint firstItem="oZx-jK-n62" firstAttribute="top" secondItem="JF4-g5-ePt" secondAttribute="bottom" id="yup-Jw-2GT"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="eR5-mO-H2R"/>
                     <connections>
                         <outlet property="clientIdTextField" destination="3fa-CJ-A75" id="IjA-KT-e2L"/>
                         <outlet property="clientSecretTextField" destination="sD5-pb-1wk" id="Yn5-Hz-SYB"/>
@@ -227,27 +222,81 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ziw-CQ-dnP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-368.11594202898556" y="700.44642857142856"/>
+            <point key="canvasLocation" x="1047" y="480"/>
+        </scene>
+        <!--List View Controller-->
+        <scene sceneID="H17-s6-bbJ">
+            <objects>
+                <viewController id="lWU-iE-UCU" customClass="DBListViewController" customModule="DBOfflineAsr" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FFN-SK-n1g">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="x6K-pp-5gC">
+                                <rect key="frame" x="132.66666666666666" y="354.66666666666669" width="127.99999999999997" height="143"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fMp-ra-bJQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="34.333333333333336"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="授权管理"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="1Xt-3d-dr8"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Yq-sp-iY2">
+                                        <rect key="frame" x="0.0" y="54.333333333333314" width="128" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="离线Asr识别"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="KZa-uA-41L"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XIT-2C-bVI">
+                                        <rect key="frame" x="0.0" y="108.66666666666663" width="128" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="录音文件识别"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="DI0-wh-cm3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="9KV-d9-Qbd"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="x6K-pp-5gC" firstAttribute="centerX" secondItem="FFN-SK-n1g" secondAttribute="centerX" id="5vv-bA-PMQ"/>
+                            <constraint firstItem="x6K-pp-5gC" firstAttribute="centerY" secondItem="FFN-SK-n1g" secondAttribute="centerY" id="pDu-0L-mFj"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hsu-eT-fab"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hd0-3a-eVl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-69.465648854961827" y="-204.22535211267606"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="kHA-vd-xZB">
+        <scene sceneID="RAv-36-Yoi">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Rf3-2E-b6g" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Aww-JX-kdF" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Z0X-8O-VaC">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5hn-77-eWi">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="C5X-pa-Y5g"/>
+                        <segue destination="lWU-iE-UCU" kind="relationship" relationship="rootViewController" id="faC-Bz-8Qa"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="izS-8Y-5pD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jHx-h5-PP1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="32.824427480916029" y="3.5211267605633805"/>
+            <point key="canvasLocation" x="-996.18320610687022" y="-204.22535211267606"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="DI0-wh-cm3"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="1.png" width="333" height="333"/>
         <image name="chevron.backward" catalog="system" width="97" height="128"/>

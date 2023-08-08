@@ -21,9 +21,7 @@ Bitcode设置：`Enable Bitcode` 设置为`NO`;
 
 ### 体验地址
 
-TODO: asr的地址上线前需要更新
-
-普通版的体验demo地址：[Demo](https://ai.data-baker.com/#/tts/offline)
+获取授权地址：[Demo](https://ai.data-baker.com/#/asr/offline)
 
 ### 1. Xcode集成lib（参考demo）
 

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		352895802A7A0CA70085829B /* DBOfflineAsrKit.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3528957F2A7A0CA70085829B /* DBOfflineAsrKit.xcframework */; };
+		355D87FA2A81E21F0061FB70 /* DBListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355D87F92A81E21F0061FB70 /* DBListViewController.swift */; };
 		3578DD812A1F519000BCBD87 /* 8.png in Resources */ = {isa = PBXBuildFile; fileRef = 3578DD792A1F519000BCBD87 /* 8.png */; };
 		3578DD822A1F519000BCBD87 /* 4.png in Resources */ = {isa = PBXBuildFile; fileRef = 3578DD7A2A1F519000BCBD87 /* 4.png */; };
 		3578DD832A1F519000BCBD87 /* 5.png in Resources */ = {isa = PBXBuildFile; fileRef = 3578DD7B2A1F519000BCBD87 /* 5.png */; };
@@ -54,6 +55,7 @@
 
 /* Begin PBXFileReference section */
 		3528957F2A7A0CA70085829B /* DBOfflineAsrKit.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = DBOfflineAsrKit.xcframework; sourceTree = SOURCE_ROOT; };
+		355D87F92A81E21F0061FB70 /* DBListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DBListViewController.swift; path = "../../../../asr_github/DBOfflineAsr-sourceCode/DBOfflineAsr/DBListViewController.swift"; sourceTree = "<group>"; };
 		3578DD792A1F519000BCBD87 /* 8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 8.png; sourceTree = "<group>"; };
 		3578DD7A2A1F519000BCBD87 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
 		3578DD7B2A1F519000BCBD87 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				35C5603929C06DE40028FD2C /* README.md */,
 				C9D7D127298520A000F25DB7 /* SceneDelegate.swift */,
 				C9D7D129298520A000F25DB7 /* ViewController.swift */,
+				355D87F92A81E21F0061FB70 /* DBListViewController.swift */,
 				35D6CD792A4C2A1500A0E2D1 /* Toast.swift */,
 				359944EF2A2843D9003AE468 /* DBTimeUtil.swift */,
 				35D6CD682A4BE8AB00A0E2D1 /* DBLoginVC.h */,
@@ -282,6 +285,7 @@
 				35D6CD7A2A4C2A1500A0E2D1 /* Toast.swift in Sources */,
 				35D6CD6C2A4BE8E200A0E2D1 /* DBUserInfoManager.m in Sources */,
 				C9D7D12A298520A000F25DB7 /* ViewController.swift in Sources */,
+				355D87FA2A81E21F0061FB70 /* DBListViewController.swift in Sources */,
 				35D6CD722A4BE94100A0E2D1 /* MBProgressHUD.m in Sources */,
 				C9D7D126298520A000F25DB7 /* AppDelegate.swift in Sources */,
 				C9D7D128298520A000F25DB7 /* SceneDelegate.swift in Sources */,
@@ -460,7 +464,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_BUNDLE_IDENTIFIER = com.biaobei.OfflineAsr.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.biaobei.OfflineAsr.iOS.github;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -504,7 +508,7 @@
 				MARKETING_VERSION = 1.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-lc++";
-				PRODUCT_BUNDLE_IDENTIFIER = com.biaobei.OfflineAsr.iOS;
+				PRODUCT_BUNDLE_IDENTIFIER = com.biaobei.OfflineAsr.iOS.github;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

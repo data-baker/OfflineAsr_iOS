@@ -10,13 +10,17 @@
 #import "DBUserInfoManager.h"
 
 typedef void(^Handler) (BOOL ret);
+typedef void(^ClearAuthHandler) (BOOL ret);
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface DBLoginVC : UIViewController
 
 @property(nonatomic,copy)Handler handler;
+@property(nonatomic,copy)ClearAuthHandler clearHandler;
 @property(nonatomic,copy)NSString * sdkName; // 当前的标题
+
+
 
 @end
 

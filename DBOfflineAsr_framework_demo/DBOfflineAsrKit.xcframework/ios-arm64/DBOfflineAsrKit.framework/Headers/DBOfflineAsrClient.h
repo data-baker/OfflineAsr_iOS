@@ -46,9 +46,6 @@ NS_ASSUME_NONNULL_BEGIN
 // 结束文件识别
 - (void)stopFileRecognize;
 
-// Test method
-- (void)clearAuth;
-
 - (void)logMessage:(NSString *)message;
 
 @end

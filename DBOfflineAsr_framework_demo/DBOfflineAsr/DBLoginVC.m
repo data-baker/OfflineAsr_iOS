@@ -11,23 +11,14 @@
 #import "DBOfflineAsr-Swift.h"
 #import "DBUserInfoManager.h"
 #import "DBOfflineAsrKit.h"
-//#import <DBOfflineAsrKit/DBOfflineAsrKit.h>
 #import "UIView+Toast.h"
 
-typedef NS_ENUM(NSInteger,DBAudioSDKType) {
-    DBAudioSDKTypeOnlineTTS = 1, // online tts
-    DBAudioSDKTypeOneSpeechASR , // one speech asr
-    DBAudioSDKTypeLongTimeASR, // long time asr
-    DBAudioSDKTypeVoiceTransfer, // voice transfer
-    DBAudioSDKTypeVoiceEngraver, // voice Engraver
-};
 
 #warning  请联系标贝科技获取clientId 和clientSecret, 注意不同的服务使用不同的授权clientId和clientSecret
 
-// MARK: 默认的测试授权
-static NSString *KClientId = @"";
-static NSString *KClientSecret = @"";
-
+//product
+static NSString *KClientId = @"XXX";
+static NSString *KClientSecret = @"XXX";
 #define KUserDefalut [NSUserDefaults standardUserDefaults]
 
 @interface DBLoginVC ()
@@ -38,7 +29,6 @@ static NSString *KClientSecret = @"";
 @property (weak, nonatomic) IBOutlet UITextField *clientSecretTextField;
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-
 
 @end
 
@@ -82,11 +72,12 @@ static NSString *KClientSecret = @"";
 - (IBAction)loginAction:(id)sender {
     
     if (self.clientIdTextField.text.length <= 0) {
-        // [self.view makeToast:@"请输入clentId" duration:2 position:CSToastPositionCenter];
+        
+        //        [self.view makeToast:@"请输入clentId" duration:2 position:CSToastPositionCenter];
         return ;
     }
-    if (self.clientSecretTextField.text.length <= 0) {
-        // [self.view makeToast:@"请输入clentSecret" duration:2 position:CSToastPositionCenter];
+    if (self.clientSecretTextField.text.length <= 0 ) {
+        //        [self.view makeToast:@"请输入clentSecret" duration:2 position:CSToastPositionCenter];
         return ;
     }
     NSString *clientId = [self.clientIdTextField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -98,6 +89,7 @@ static NSString *KClientSecret = @"";
             NSLog(@"获取token失败:%@",message);
             NSString *msg = [NSString stringWithFormat:@"获取token失败:%@",message];
             [self.view makeToast:msg duration:2 position:CSToastPositionCenter];
+            [KUserDefalut removeObjectForKey:self->keyName_];
             self.handler(NO);
             return;
         }
@@ -119,7 +111,6 @@ static NSString *KClientSecret = @"";
                 self.handler(YES);
             }
         });
-       
     }];
     
     
@@ -151,9 +142,26 @@ static NSString *KClientSecret = @"";
      
 }
 - (IBAction)comeBack:(UIButton *)sender {
-    self.handler(NO);
+    if (self.handler) {
+        self.handler(NO);
+    }
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+- (IBAction)clearAuth:(id)sender {
+    if(self.clearHandler) {
+        self.clientIdTextField.text = @"";
+        self.clientSecretTextField.text = @"";
+        // 清除内存
+        DBUserInfoManager *infoManager = [DBUserInfoManager shareManager];
+        infoManager.clientId = @"";
+        infoManager.clientSecret = @"";
+        infoManager.sdkType = @"";
+        [KUserDefalut removeObjectForKey:self->keyName_];
+        self.clearHandler(true);
+    }
+    
+}
+
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     [self.clientIdTextField resignFirstResponder];

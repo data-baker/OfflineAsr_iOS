@@ -9,15 +9,23 @@ import DBOfflineAsrKit
 
 typealias MessageHandler = (Bool, String)->Void
 
+enum PageType {
+    case asr
+    case fileRecognize
+    case authPage
+}
+
 class ViewController: UIViewController {
     @IBOutlet weak var resultLabel: UILabel!
     @IBOutlet weak var recordBtn: UIButton!
+    @IBOutlet weak var fileRecognizeButton: UIButton!
     @IBOutlet weak var voiceImageView: UIImageView!
+    // 1: 录音识别 2:文件识别
+    public var pageType:PageType = .asr
     var pathArray:[String] = []
     var convertFlag = false
     var fileName = ""
     var totalTime = 0.0
-
     /// It saves the decoded results so far
     var sentences: [String] = [] {
         didSet {
@@ -45,55 +53,64 @@ class ViewController: UIViewController {
     }
     
     let asrClient = DBOfflineAsrClient.shareInstance()
-    
     func updateLabel() {
         DispatchQueue.main.async {
             self.resultLabel.text = self.results
         }
     }
+    func updateUIStateWithPageType() {
+        switch pageType {
+        case .asr:
+            resultLabel.text = "标贝离线识别 \n\n请点击按钮开始体验"
+            fileRecognizeButton.isHidden = true
+        case .fileRecognize:
+            resultLabel.text = "标贝录音文件识别 \n\n请点击按钮开始体验"
+            recordBtn.isHidden = true
+        case .authPage:
+            showLognIn()
+        }
+        
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         UIApplication.shared.isIdleTimerDisabled = true
-        self.navigationController?.setNavigationBarHidden(true, animated: true)
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
         asrClient.isLog = true
-        resultLabel.text = "标贝离线识别 \n\n请点击按钮开始体验"
-        recordBtn.setTitle("开始", for: .normal)
-        showLognIn()
+        recordBtn.setTitle("开始Asr", for: .normal)
+        updateUIStateWithPageType()
+        // 如果本地已经有授权了，不再进行提示
+        let clientId = DBUserInfoManager.share().clientId
+        let clientSecret = DBUserInfoManager.share().clientSecret
+        if clientId.isEmpty == false && clientSecret.isEmpty == false {
+            self.asrClient.delegate = self
+            self.initRecognizer()
+        }else {
+            showLognIn()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        if self.pageType == .asr {
+            stopRecorder()
+        }
     }
     
     @IBAction func onRecordBtnClick(_ sender: UIButton) {
-        if recordBtn.currentTitle == "开始" {
+        if recordBtn.currentTitle == "开始Asr" {
             startRecorder()
-            recordBtn.setTitle("停止", for: .normal)
+            recordBtn.setTitle("停止Asr", for: .normal)
         } else {
             stopRecorder()
-            recordBtn.setTitle("开始", for: .normal)
+            recordBtn.setTitle("开始Asr", for: .normal)
         }
     }
     
     
     @IBAction func auth(_ sender: UIButton) {
         showLognIn()
-        return
-       // 此处的授权为固定的授权，需要修改为可变化的授权
-        let clientId = DBUserInfoManager().clientId
-        let clientSecret = DBUserInfoManager().clientSecret
-        asrClient.setupRecognizerClientId(clientId, clientSecret: clientSecret) { ret , messag in
-            print("asr author \(ret), message: \(messag ?? "")")
-            if ret != 0 {
-                self.view.makeToast(messag,position: .center)
-                return
-            }
-            self.view.makeToast("授权成功", position: .center)
-        }
-        asrClient.delegate = self
-        initRecognizer()
     }
     
-    @IBAction func clearAuth(_ sender: UIButton) {
-        asrClient.clearAuth()
-    }
     
     func showLognIn() {
         let loginVC = UIStoryboard(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "DBLoginVC") as! DBLoginVC
@@ -101,13 +118,21 @@ class ViewController: UIViewController {
         loginVC.handler = {ret in
             guard ret == true else {
                 print("获取授权失败")
-//                self.view.makeToast()
+                self.navigationController?.popViewController(animated: false)
                 return
             }
             print("获取授权成功")
-//            self.view.makeToast("获取授权成功")
+            if self.pageType == .authPage {
+                self.navigationController?.popViewController(animated: false)
+                return
+            }
+            
             self.asrClient.delegate = self
             self.initRecognizer()
+        }
+        loginVC.clearHandler = { [self] ret in
+            if ret == true {
+            }
         }
         loginVC.modalPresentationStyle = .fullScreen
         navigationController?.present(loginVC, animated: true)
@@ -131,7 +156,7 @@ class ViewController: UIViewController {
         DBTimeUtil.start();
         if asrClient.startAsr() == false {
             voiceImageView.isHidden = true
-            recordBtn.setTitle("开始", for: .normal)
+            recordBtn.setTitle("开始Asr", for: .normal)
         }
     }
     
@@ -154,7 +179,7 @@ class ViewController: UIViewController {
         }
     }
     
-    // asr识别的随机性测试
+    //MARK:  asr识别的随机性测试
     @IBAction func asrTestAction(_ sender: UIButton) {
         randomAsrStart()
     }
@@ -221,6 +246,7 @@ extension ViewController: DBAsrDelegate {
     }
     
     func asrResource(withPath resPath: String, messageHandler:MessageHandler) {
+        pathArray.removeAll()
         DBTimeUtil().path(forResource: resPath) { [weak self] isSucess, fullPath, dirPath in
             guard let self = self else {
                 return
